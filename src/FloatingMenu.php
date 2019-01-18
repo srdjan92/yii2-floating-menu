@@ -11,5 +11,5 @@ use yii\base\Widget;
 
 class FloatingMenu extends Widget
 {
-    
+
 }
