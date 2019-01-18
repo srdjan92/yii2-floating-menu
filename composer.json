@@ -25,5 +25,7 @@
         "psr-4": {
             "srdjan\\floatingmenu\\": "src"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
