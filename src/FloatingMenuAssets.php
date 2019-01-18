@@ -5,7 +5,11 @@
  * Time: 11:40 PM
  */
 
-class FloatingMenuAssets
+namespace srdjan\floatingmenu;
+
+use yii\web\AssetBundle;
+
+class FloatingMenuAssets extends AssetBundle
 {
 
 }

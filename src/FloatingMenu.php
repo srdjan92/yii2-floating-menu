@@ -5,7 +5,11 @@
  * Time: 11:40 PM
  */
 
-class FloatingMenu
-{
+namespace srdjan\floatingmenu;
 
+use yii\base\Widget;
+
+class FloatingMenu extends Widget
+{
+    
 }
