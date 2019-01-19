@@ -18,6 +18,12 @@
             "role": "Developer"
         }
     ],
+    "repositories": [
+        {
+            "type": "path",
+            "url": "https://github.com/srdjan92/yii2-floating-menu"
+        }
+    ],
     "require": {
         "yiisoft/yii2": "~2.0.0"
     },
