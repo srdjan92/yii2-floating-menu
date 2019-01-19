@@ -21,7 +21,7 @@
     "repositories": [
         {
             "type": "git",
-            "url": "https://github.com/srdjan92/yii2-floating-menu"
+            "url": "https://github.com/srdjan92/yii2-floating-menu.git"
         }
     ],
     "require": {
