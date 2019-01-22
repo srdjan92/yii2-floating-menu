@@ -1,0 +1,89 @@
+.floating-menu-widget {
+    position: fixed;
+    left: -40px;
+    z-index: 99;
+}
+
+.floating-menu-widget.nav-collapsed .nav-toggle {
+    transition: opacity .3s ease-in-out;
+    opacity: 0.3;
+    height: 40px;
+    width: 40px;
+}
+
+.floating-menu-widget.nav-collapsed .nav-toggle:hover {
+    opacity: 1;
+}
+
+.floating-menu-widget.nav-collapsed li.nav-item  {
+    left: -40px;
+}
+
+.floating-menu-widget.nav-expanded li.nav-item {
+    left: 0;
+}
+
+.floating-menu-widget ul {
+    position: absolute;
+    border-bottom: 0;
+}
+
+.floating-menu-widget  li.nav-toggle {
+    width: 40px !important;
+    left: 0 !important;
+}
+
+.floating-menu-widget li {
+    padding: 3px 10px;
+    position: relative;
+    margin-top: 2px !important;
+    overflow: hidden;
+    height: 40px;
+    width: 40px;
+    transition: all .3s ease-in-out;
+    text-align: left;
+    vertical-align: top;
+    white-space: nowrap;
+    clear: left;
+    float: left;
+    line-height: 37px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.6);
+    left: -40px;
+
+    background-color: #d6d8d9;
+    border-color: #c6c8ca;
+}
+
+.floating-menu-widget li:hover {
+    width: 160px;
+    color: #ffffff;
+}
+
+.floating-menu-widget li > a {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.floating-menu-widget li:hover a {
+    color: #ffffff;
+    text-decoration: none;
+    transform: scale(1.2);
+}
+
+.floating-menu-widget li {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.floating-menu-widget li span.nav-label {
+    opacity: 0;
+    padding-left: 12px;
+}
+
+.floating-menu-widget li:hover span.nav-label {
+    opacity: 1;
+}
+
+.floating-menu-widget li.active > a {
+    color: #ffffff;
+    transform: scale(1.2);
+}

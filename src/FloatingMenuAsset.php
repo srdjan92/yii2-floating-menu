@@ -11,7 +11,7 @@ use yii\web\AssetBundle;
 
 class FloatingMenuAsset extends AssetBundle
 {
-    public $sourcePath = '@vendor/srdjan/yii2-floating-menu/assets';
+    public $sourcePath = '@vendor/srdjan92/yii2-floating-menu/src/assets';
 
     public $js = [
         'js/floating-menu.js'
