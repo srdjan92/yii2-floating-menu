@@ -1,39 +1,39 @@
-.floating-menu-widget {
+.floating-menu {
     position: fixed;
     left: -40px;
     z-index: 99;
+    display: none;
 }
 
-.floating-menu-widget.nav-collapsed .nav-toggle {
-    transition: opacity .3s ease-in-out;
-    opacity: 0.3;
-    height: 40px;
-    width: 40px;
-}
-
-.floating-menu-widget.nav-collapsed .nav-toggle:hover {
-    opacity: 1;
-}
-
-.floating-menu-widget.nav-collapsed li.nav-item  {
-    left: -40px;
-}
-
-.floating-menu-widget.nav-expanded li.nav-item {
-    left: 0;
-}
-
-.floating-menu-widget ul {
+.floating-menu .floating-nav {
     position: absolute;
     border-bottom: 0;
 }
 
-.floating-menu-widget  li.nav-toggle {
-    width: 40px !important;
-    left: 0 !important;
+.floating-menu.nav-collapsed .nav-toggle {
+    transition: opacity .3s ease-in-out;
+    opacity: 0.3;
 }
 
-.floating-menu-widget li {
+.floating-menu.nav-collapsed .nav-toggle:hover {
+    opacity: 1;
+}
+
+.floating-menu.nav-collapsed li.nav-item  {
+    left: -40px;
+}
+
+.floating-menu.nav-expanded li.nav-item {
+    left: 0;
+}
+
+.floating-menu  li.nav-toggle {
+    width: 40px !important;
+    left: 0 !important;
+    background-color: #999999;
+}
+
+.floating-menu li {
     padding: 3px 10px;
     position: relative;
     margin-top: 2px !important;
@@ -50,40 +50,38 @@
     cursor: pointer;
     color: rgba(255, 255, 255, 0.6);
     left: -40px;
-
     background-color: #d6d8d9;
     border-color: #c6c8ca;
 }
 
-.floating-menu-widget li:hover {
+.floating-menu li:hover {
     width: 160px;
     color: #ffffff;
 }
 
-.floating-menu-widget li > a {
+.floating-menu li > a {
     color: rgba(255, 255, 255, 0.6);
 }
 
-.floating-menu-widget li:hover a {
+.floating-menu li:hover a {
     color: #ffffff;
     text-decoration: none;
-    transform: scale(1.2);
 }
 
-.floating-menu-widget li {
-    color: rgba(255, 255, 255, 0.6);
+.floating-menu li.active > a {
+    color: #ffffff;
 }
 
-.floating-menu-widget li span.nav-label {
+.floating-menu li span.nav-label {
     opacity: 0;
     padding-left: 12px;
 }
 
-.floating-menu-widget li:hover span.nav-label {
+.floating-menu li:hover span.nav-label {
     opacity: 1;
 }
 
-.floating-menu-widget li.active > a {
-    color: #ffffff;
-    transform: scale(1.2);
+.floating-menu.nav-expanded li.nav-item.active {
+    background-color: #bdbfc2;
 }
+

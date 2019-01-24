@@ -22,14 +22,9 @@ class FloatingMenu extends Widget
 
     public $items = [];
 
-    public $orientation = 'left';
-
     public $options = [];
-
     public $itemOptions = [];
-
     public $containerOptions = [];
-    
     public $toggleOptions = [];
 
     public $encodeLabels = false;
@@ -105,8 +100,7 @@ class FloatingMenu extends Widget
 
         $state = $this->getMenuState();
 
-        Html::addCssClass($containerOptions, 'floating-menu-widget');
-        Html::addCssClass($containerOptions, "nav-{$state}");
+        Html::addCssClass($containerOptions, ['floating-menu', "nav-{$state}"]);
 
         $containerOptions['data-state'] = $state;
 
@@ -114,7 +108,7 @@ class FloatingMenu extends Widget
 
         $options = $this->options;
         $tag = ArrayHelper::remove($options, 'tag', 'ul');
-        Html::addCssClass($options, 'nav-floating-menu');
+        Html::addCssClass($options, 'floating-nav');
 
         echo Html::tag($tag, $this->renderItems($items), $options);
 
@@ -135,6 +129,7 @@ class FloatingMenu extends Widget
                 $class[] = $this->firstItemCssClass;
             }
             Html::addCssClass($options, $class);
+            Html::addCssStyle($options, "background-color: {$this->getColorAtIndex($i)};");
 
             $menu = $this->renderItem($item);
             $lines[] = Html::tag($tag, $menu, $options);
@@ -149,6 +144,7 @@ class FloatingMenu extends Widget
     {
         $toggleOptions = $this->toggleOptions;
         Html::addCssClass($toggleOptions, "nav-toggle");
+
         $collapseOptions = ArrayHelper::remove($toggleOptions, 'collapseOptions', []);
         $expandOptions = ArrayHelper::remove($toggleOptions, 'expandOptions', []);
 
@@ -160,10 +156,10 @@ class FloatingMenu extends Widget
         Html::addCssStyle($collapseOptions, $isCollapsed ? "display: none;" : "");
         Html::addCssStyle($expandOptions, $isCollapsed ? "" : "display: none;");
 
-        $collapsedIcon = Html::tag('i', '', $collapseOptions);
-        $expandedIcon = Html::tag('i', '', $expandOptions);
-
-        return Html::tag('li',  $collapsedIcon . $expandedIcon, $toggleOptions);
+        return Html::tag('li',
+            Html::tag('i', '', $collapseOptions) . Html::tag('i', '', $expandOptions),
+            $toggleOptions
+        );
     }
 
     protected function renderItem($item)
@@ -239,5 +235,19 @@ class FloatingMenu extends Widget
     {
         $view = $this->getView();
         FloatingMenuAsset::register($view);
+    }
+
+    public function getColorAtIndex($index)
+    {
+        $colors = [
+            '#3B5998',
+            '#55acee',
+            '#25d366',
+            '#95D03A',
+            '#8a3ab9',
+            '#505e7c'
+        ];
+
+        return $colors[$index % 6];
     }
 }

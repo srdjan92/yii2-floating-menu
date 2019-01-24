@@ -3,9 +3,9 @@ var STATE_EXPANDED = 'expanded';
 var COOKIE_KEY = 'floating_menu_state';
 
 $(function() {
-    var floatingMenu = $('.floating-menu-widget'),
-        collapseMenuBtn = $('.collapse-floating-menu'),
-        expandMenuBtn = $('.expand-floating-menu');
+    var floatingMenu = $('.floating-menu');
+    var collapseMenuBtn = $('.collapse-floating-menu');
+    var expandMenuBtn = $('.expand-floating-menu');
 
     $('.nav-toggle').on('click', function(e) {
         e.preventDefault();
@@ -33,11 +33,13 @@ $(function() {
         }
     });
 
+    floatingMenu.fadeIn();
+    
     var windowHeight = $(window).height();
-    var elementHeight = floatingMenu.find('ul.nav-floating-menu').height();
+    var elementHeight = floatingMenu.find('.floating-nav').height();
 
     floatingMenu.css('top', (windowHeight - elementHeight) / 2);
-    floatingMenu.fadeIn();
+    
 });
 
 
