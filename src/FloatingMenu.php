@@ -18,7 +18,7 @@ class FloatingMenu extends Widget
     const STATE_COLLAPSED = 'collapsed';
     const STATE_EXPANDED = 'expanded';
 
-    const COOKIE_KEY = 'floating_menu_state';
+    const COOKIE_KEY = 'fmwidget-state';
 
     public $items = [];
 
@@ -63,7 +63,7 @@ class FloatingMenu extends Widget
         $items = $this->normalizeItems($this->items);
 
         if (!empty($items)) {
-            echo $this->renderWidget($items);
+            return $this->renderWidget($items);
         }
     }
 
@@ -100,19 +100,20 @@ class FloatingMenu extends Widget
 
         $state = $this->getMenuState();
 
-        Html::addCssClass($containerOptions, ['floating-menu', "nav-{$state}"]);
+        Html::addCssClass($containerOptions, ['fmwidget', "fmwidget-{$state}"]);
 
         $containerOptions['data-state'] = $state;
 
-        echo Html::beginTag($containerTag, $containerOptions);
+        $html = Html::beginTag($containerTag, $containerOptions);
 
         $options = $this->options;
         $tag = ArrayHelper::remove($options, 'tag', 'ul');
-        Html::addCssClass($options, 'floating-nav');
+        Html::addCssClass($options, 'fmwidget-nav');
 
-        echo Html::tag($tag, $this->renderItems($items), $options);
-
-        echo Html::endTag('div');
+        $html .= Html::tag($tag, $this->renderItems($items), $options);
+        $html .= Html::endTag('div');
+        
+        return $html;
     }
 
     public function renderItems($items)
@@ -121,7 +122,7 @@ class FloatingMenu extends Widget
         foreach ($items as $i => $item) {
             $options = array_merge($this->itemOptions, ArrayHelper::getValue($item, 'options', []));
             $tag = ArrayHelper::remove($options, 'tag', 'li');
-            $class = ['nav-item'];
+            $class = ['fmwidget-item'];
             if ($item['active']) {
                 $class[] = $this->activeCssClass;
             }
@@ -129,7 +130,7 @@ class FloatingMenu extends Widget
                 $class[] = $this->firstItemCssClass;
             }
             Html::addCssClass($options, $class);
-            Html::addCssStyle($options, "background-color: {$this->getColorAtIndex($i)};");
+            Html::addCssStyle($options, "background-color: {$this->getColorAtIndex($i)};", false);
 
             $menu = $this->renderItem($item);
             $lines[] = Html::tag($tag, $menu, $options);
@@ -143,15 +144,15 @@ class FloatingMenu extends Widget
     public function renderToggle()
     {
         $toggleOptions = $this->toggleOptions;
-        Html::addCssClass($toggleOptions, "nav-toggle");
+        Html::addCssClass($toggleOptions, "fmwidget-toggle");
 
         $collapseOptions = ArrayHelper::remove($toggleOptions, 'collapseOptions', []);
         $expandOptions = ArrayHelper::remove($toggleOptions, 'expandOptions', []);
 
         $isCollapsed = $this->getMenuState() === self::STATE_COLLAPSED;
 
-        Html::addCssClass($collapseOptions, 'collapse-floating-menu');
-        Html::addCssClass($expandOptions, 'expand-floating-menu');
+        Html::addCssClass($collapseOptions, 'fmwidget-collapse');
+        Html::addCssClass($expandOptions, 'fmwidget-expand');
 
         Html::addCssStyle($collapseOptions, $isCollapsed ? "display: none;" : "");
         Html::addCssStyle($expandOptions, $isCollapsed ? "" : "display: none;");
@@ -176,7 +177,7 @@ class FloatingMenu extends Widget
         $template = ArrayHelper::getValue($item, 'template', $this->labelTemplate);
 
         return strtr($template, [
-            '{label}' => $item['label'],
+            '{label}' => $item['label']
         ]);
     }
 
@@ -235,6 +236,8 @@ class FloatingMenu extends Widget
     {
         $view = $this->getView();
         FloatingMenuAsset::register($view);
+
+        $view->registerJs("fmwidget.init();");
     }
 
     public function getColorAtIndex($index)
