@@ -1,5 +1,5 @@
 # yii2-floating-menu
-Floating menu with expand/collapse ability depending what is needed in specific case. 
+Floating menu positioned at the left side of screen with expand/collapse ability depending what is needed in specific case. 
 
 # Instalation
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
